@@ -1,7 +1,7 @@
 # group5_project
 - AOOP project for group 5
-- MEMBER 1: kayeedelau
-- MEMBER 2: tzshin
+- MEMBER 1: [kayeedelau](https://github.com/kayeedelau/group5_project/blob/main/kyd_name.txt)
+- MEMBER 2: [tzshin](https://github.com/kayeedelau/group5_project/blob/main/tz_name.txt)
 
 ## 遊戲簡介
 - **遊戲名稱：** (待定)
