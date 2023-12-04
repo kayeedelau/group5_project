@@ -1,6 +1,6 @@
 # game setup
-WIDTH = 1280
-HEIGHT= 720
+WIDTH = 1600
+HEIGHT= 1200
 FPS   = 60
 TILESIZE= 64
 WATER_COLOR = '#71ddee'

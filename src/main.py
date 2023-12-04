@@ -45,9 +45,13 @@ class Game:
 							sys.exit()
 
 					self.screen.fill(BLACK)
-					text = self.font.render('LOBBY', True, (0, 255, 255))
-					text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
-					self.screen.blit(text, text_rect)
+					#text = self.font.render('LOBBY', True, (0, 255, 255))
+					#text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+					#self.screen.blit(text, text_rect)
+					image_path = "./image/lobby_image.jpg"
+					image = pygame.image.load(image_path)
+					image = pygame.transform.scale(image,(1600,1200))
+					
 
 					pygame.display.update()  # Update the display
 					self.clock.tick(FPS)
