@@ -1,7 +1,8 @@
 import pygame
 import sys
 from settings import *
-
+from level import Level
+from player import Player
 class Button:
     def __init__(self, image_path, position, callback):
         self.image = pygame.image.load(image_path)
@@ -18,47 +19,96 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption('Dream Adventure 2.0')
         self.clock = pygame.time.Clock()
-
+        self.level = Level([('score', '500'), ('health', '50'), ('energy', '50'), ('pos', '(4736,128)'), ('speed', '5')])
+        self.is_dead = False
+        
+        #level init here
+        
+        self.loading = False
+        self.setting = False
+        self.lobby = True
+        self.rungame = False
+        self.button_clicked = False
+        
+        #pause
+        self.is_time_stopped = False
+        
+        #click sfx
+        self.sfx = pygame.mixer.Sound('./audio/click.mp3')
+        
         self.start_button = Button("./image/start.png", ((WIDTH-320)//2, 467), self.start_game)
         self.load_button = Button("./image/load.png", ((WIDTH-320)//2, 600), self.load_game)
         self.setting_button = Button("./image/setting.png", ((WIDTH-320)//2, 733), self.set_game)
         self.quit_button = Button("./image/quit.png", ((WIDTH-320)//2, 866), sys.exit)
 
+    def save_game_data(self,ID):
+        score = self.level.get_exp()
+        health= self.level.get_health()
+        energy= self.level.get_energy()
+        pos   = self.level.get_pos().topleft
+        speed = self.level.get_speed()
+        
+        file_name = f'{ID}.txt'
+        with open(file_name, 'w')as file:
+            file.write(f'score:{score}\n')
+            file.write(f'health:{health}\n')
+            file.write(f'energy:{energy}\n')
+            file.write(f'pos:{pos}\n')
+            file.write(f'speed:{speed}\n')
+
+    def death_check(self):
+        health = self.level.get_health()
+        if health <=0:
+            self.is_dead = True
+            
     def start_game(self):
         print("Starting the game!")
-        self.run  = True
+        self.sfx.play()
+        self.rungame  = True
         self.lobby= False
+        self.button_clicked = True
         
     def load_game(self):
         print("Loading the game!")
+        self.sfx.play()
+        self.lobby= False
+        self.loading=True
+        self.button_clicked = True
         
     def set_game(self):
         print("Setting the game!")
-		
+        self.sfx.play()
+        self.setting =True
+        self.lobby = False
+        self.button_clicked = True
+        
     def run(self):
-        game = True
-        loading = False
-        setting = False
-        lobby = True
-        run = False
-        while game:
-            print("Game")
-            while loading:
+        
+        while self.lobby:
+            
+            while self.loading and not self.button_clicked:
                 self.screen.fill(BLACK)
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                self.screen.blit(background, (0, 0))
+                self.screen.blit(title_image, (288, -150))
+                self.load_game_save(0)
 
-            while setting:
+
+            while self.setting and not self.button_clicked:
                 self.screen.fill(BLACK)
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                self.screen.blit(background, (0, 0))
+                self.screen.blit(title_image, (288, -150))
 
-            while lobby:
+            while self.lobby and not self.button_clicked:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -98,17 +148,17 @@ class Game:
                 pygame.display.update()  # Update the display
                 self.clock.tick(FPS)
 
-            while run:
-                self.screen.fill(BLACK)
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        sys.exit()
-                pygame.display.update()  # Update the display
-                self.clock.tick(FPS)
+        while self.rungame:
+            self.screen.fill(BLACK)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+            pygame.display.update()  # Update the display
+            self.clock.tick(FPS)
 
     def load_game_save(self, ID):
-        return
+        print("load_game")
 
 if __name__ == '__main__':
     game = Game()
