@@ -60,7 +60,44 @@ class Level:
 		self.current_attack = None
 
 	def create_map(self):
+		layouts = {
+			'boundary': import_csv_layout('./scene/2023/01_Block.csv'), 
+			'01': 		import_csv_layout('./scene/2023/2023_object.csv'), 
+			'02': 		import_csv_layout('./scene/2023/2023_object2.csv'), 
+			'entity': 	import_csv_layout('./scene/2023/2023_Enemy.csv'), 
+			#'player': 	import_csv_layout('./scene/01_Player.csv')
+			}
 		
+		graphics = {
+			'01':import_folder('./graphics/pic'), 
+			'ob':import_folder('./graphics/pic')}
+			
+		for style, layout in layouts.items():
+			for row_index, row in enumerate(layout):
+				for col_index, col in enumerate(row):
+					if col != '-1':
+						x = col_index * TILESIZE
+						y = row_index * TILESIZE
+						if style == 'boundary':
+							Tile((x, y), [self.obstacle_sprites], 'invisible')
+						if style == '01':
+							random_grass_image = choice(graphics['01'])
+							Tile((x, y), [self.visible_sprites, self.obstacle_sprites, self.attackable_sprites], '01', random_grass_image)	
+						if style == '02':
+							random_grass_image = choice(graphics['01'])
+							Tile((x, y), [self.visible_sprites, self.obstacle_sprites, self.attackable_sprites] , '02', random_grass_image)
+						if style == 'ob': 
+							surf = graphics['ob'][int(col)]
+							Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'ob', surf)
+						if style == 'player':
+							pos = eval(self.player_data[4][1])
+							self.player = Player(pos, [self.visible_sprites], self.obstacle_sprites, self.create_attack, self.destroy_attack, self.create_magic, self.player_data)
+						if style == 'entity':
+							if col== '24': 	monster_name = "bamboo"
+							elif col=='30': monster_name= "spirit"
+							elif col=='41': monster_name='raccoon'
+							else: 			monster_name= 'squid'
+							Enemy(monster_name, (x, y), [self.visible_sprites, self.attackable_sprites], self.obstacle_sprites, self.damage_player, self.trigger_death_particles, self.add_exp)		 
 
 	def player_attack_logic(self):
 		if self.attack_sprites:
@@ -130,7 +167,7 @@ class YSortCameraGroup(pygame.sprite.Group):
 		self.offset = pygame.math.Vector2()
 		
 		#creating the floor
-		floor_surf = pygame.image.load('./cool/03.png').convert()
+		floor_surf = pygame.image.load('./scene/03.png').convert()
 		self.floor_surf = pygame.transform.scale(floor_surf, (1280*4, 800*4))
 		self.floor_rect = self.floor_surf.get_rect(topleft = (0, 0))
 		
