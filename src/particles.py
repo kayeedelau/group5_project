@@ -6,37 +6,37 @@ class AnimationPlayer:
 	def __init__(self):
 		self.frames = {
 			# magic
-			'flame': import_folder('./graphics/particles/flame/frames'),
-			'aura': import_folder('./graphics/particles/aura'),
-			'heal': import_folder('./graphics/particles/heal/frames'),
+			'flame': import_folder('./image/particles/flame/frames'),
+			'aura': import_folder('./image/particles/aura'),
+			'heal': import_folder('./image/particles/heal/frames'),
 			
 			# attacks 
-			'claw': import_folder('./graphics/particles/claw'),
-			'slash': import_folder('./graphics/particles/slash'),
-			'sparkle': import_folder('./graphics/particles/sparkle'),
-			'leaf_attack': import_folder('./graphics/particles/leaf_attack'),
-			'thunder': import_folder('./graphics/particles/thunder'),
+			'claw': import_folder('./image/particles/claw'),
+			'slash': import_folder('./image/particles/slash'),
+			'sparkle': import_folder('./image/particles/sparkle'),
+			'leaf_attack': import_folder('./image/particles/leaf_attack'),
+			'thunder': import_folder('./image/particles/thunder'),
 
 			# monster deaths
-			'squid': import_folder('./graphics/particles/smoke_orange'),
-			'raccoon': import_folder('./graphics/particles/raccoon'),
-			'spirit': import_folder('./graphics/particles/nova'),
-			'bamboo': import_folder('./graphics/particles/bamboo'),
+			'squid': import_folder('./image/particles/smoke_orange'),
+			'raccoon': import_folder('./image/particles/raccoon'),
+			'spirit': import_folder('./image/particles/nova'),
+			'bamboo': import_folder('./image/particles/bamboo'),
 			
 			# leafs 
 			'leaf': (
-				import_folder('./graphics/particles/leaf1'),
-				import_folder('./graphics/particles/leaf2'),
-				import_folder('./graphics/particles/leaf3'),
-				import_folder('./graphics/particles/leaf4'),
-				import_folder('./graphics/particles/leaf5'),
-				import_folder('./graphics/particles/leaf6'),
-				self.reflect_images(import_folder('./graphics/particles/leaf1')),
-				self.reflect_images(import_folder('./graphics/particles/leaf2')),
-				self.reflect_images(import_folder('./graphics/particles/leaf3')),
-				self.reflect_images(import_folder('./graphics/particles/leaf4')),
-				self.reflect_images(import_folder('./graphics/particles/leaf5')),
-				self.reflect_images(import_folder('./graphics/particles/leaf6')))}
+				import_folder('./image/particles/leaf1'),
+				import_folder('./image/particles/leaf2'),
+				import_folder('./image/particles/leaf3'),
+				import_folder('./image/particles/leaf4'),
+				import_folder('./image/particles/leaf5'),
+				import_folder('./image/particles/leaf6'),
+				self.reflect_images(import_folder('./image/particles/leaf1')),
+				self.reflect_images(import_folder('./image/particles/leaf2')),
+				self.reflect_images(import_folder('./image/particles/leaf3')),
+				self.reflect_images(import_folder('./image/particles/leaf4')),
+				self.reflect_images(import_folder('./image/particles/leaf5')),
+				self.reflect_images(import_folder('./image/particles/leaf6')))}
 				
 	def reflect_images(self,frames):
 		new_frames = []

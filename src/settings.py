@@ -18,7 +18,7 @@ BAR_HEIGHT = 20
 HEALTH_BAR_WIDTH = 200
 ENERGY_BAR_WIDTH = 140
 ITEM_BOX_SIZE = 80
-UI_FONT = './graphics/font/joystix.ttf'
+UI_FONT = './image/font/joystix.ttf'
 UI_FONT_SIZE = 20
 
 
@@ -45,17 +45,17 @@ UI_BORDER_COLOR_ACTIVE = 'gold'
 
 # weapons 
 weapon_data = {
-	'sword'  :{'cooldown':100, 'damage':15,'graphic':'./graphics/weapon/sword/full.png'},
-	'lance'  :{'cooldown':400, 'damage':30,'graphic':'./graphics/weapon/lance/full.png'},
-	'axe'	:{'cooldown':300, 'damage':20,'graphic':'./graphics/weapon/axe/full.png'},
-	'rapier' :{'cooldown': 50, 'damage':8 ,'graphic':'./graphics/weapon/rapier/full.png'},
-	'sai'	:{'cooldown': 80, 'damage':10,'graphic':'./graphics/weapon/sai/full.png'}}
+	'sword'  :{'cooldown':100, 'damage':15,'graphic':'./image/weapon/sword/full.png'},
+	'lance'  :{'cooldown':400, 'damage':30,'graphic':'./image/weapon/lance/full.png'},
+	'axe'	:{'cooldown':300, 'damage':20,'graphic':'./image/weapon/axe/full.png'},
+	'rapier' :{'cooldown': 50, 'damage':8 ,'graphic':'./image/weapon/rapier/full.png'},
+	'sai'	:{'cooldown': 80, 'damage':10,'graphic':'./image/weapon/sai/full.png'}}
 	
 #magic
 magic_data ={
- 'flame' : {'strength':5,'cost': 20, 'graphic':'./graphics/flame/fire.png'},
- 'heal' :  {'strength':20,'cost': 10, 'graphic':'./graphics/heal/heal.png'},
- 'teleport': {'strength':0,'cost':30,'graphic':'./graphics/teleport.png'}}
+ 'flame' : {'strength':5,'cost': 20, 'graphic':'./image/flame/fire.png'},
+ 'heal' :  {'strength':20,'cost': 10, 'graphic':'./image/heal/heal.png'},
+ 'teleport': {'strength':0,'cost':30,'graphic':'./image/teleport.png'}}
  
 #enemy
 monster_data = {

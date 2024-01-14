@@ -60,10 +60,12 @@ class Game:
 		game_paused = False
 		menu_state= 'main'
 		
-		menu 		= pygame.image.load('./graphics/menu.png')
+		menu 		= pygame.image.load('./image/menu.png')
 		menu 		= pygame.transform.scale(menu,(400,125))
-		font 		= pygame.font.SysFont('Arial',50)
-		title 		= pygame.transform.scale(pygame.image.load('./graphics/Dream Adventure.png'),(720,240))
+		background 	= pygame.image.load('./image/lobby_image.jpg')
+		background  = pygame.transform.scale(background,(1280,800))
+		font 		= pygame.font.SysFont('./image/font/joystix.ttf',50)
+		title 		= pygame.transform.scale(pygame.image.load('./image/title.png'),(800,800))
 		text1		= font.render('Set your ID:',True,(255,255,255))
 		text2		= font.render('Input your ID:',True,(255,255,255))
 		text1_rect 	= text1.get_rect(center=(400,400))
@@ -77,26 +79,27 @@ class Game:
 		sfx = pygame.mixer.Sound('./audio/click.mp3')
 		
 		# image loading
-		start_img   = pygame.image.load('./graphics/start.png').convert_alpha()
-		load_img	= pygame.image.load('./graphics/load.png').convert_alpha()
-		quit_img	= pygame.image.load('./graphics/quit.png').convert_alpha()
+		start_img   = pygame.image.load('./image/start.png').convert_alpha()
+		load_img	= pygame.image.load('./image/load.png').convert_alpha()
+		quit_img	= pygame.image.load('./image/quit.png').convert_alpha()
 		start_img   = pygame.transform.scale(start_img,(400,125))
 		load_img    = pygame.transform.scale(load_img ,(400,125))
 		quit_img    = pygame.transform.scale(quit_img ,(400,125))
 		
 		#create button instances
-		start_button= button.Button(WIDTH//2, HEIGHT//7*3  , start_img, 1)
-		load_button	= button.Button(WIDTH//2, HEIGHT//7*4.5, load_img, 1)
-		quit_button	= button.Button(WIDTH//2, HEIGHT//7*6  , quit_img, 1)
+		start_button= button.Button(WIDTH//2, HEIGHT//7*3+50  , start_img, 1)
+		load_button	= button.Button(WIDTH//2, HEIGHT//7*4.5+25, load_img, 1)
+		quit_button	= button.Button(WIDTH//2, HEIGHT//7*6+10  , quit_img, 1)
 
 		number 		= ""
-		font1 		= pygame.font.Font(None, 70)
-		input_rect 	= pygame.Rect(WIDTH//2-50, HEIGHT//2-20, 200, 48)
+		font1 		= pygame.font.Font('./image/font/joystix.ttf', 30)
+		input_rect 	= pygame.Rect(WIDTH//2-100, HEIGHT//2-20, 200, 48)
 		
 		while game:
 			while lobby:
 				self.screen.fill(BLACK)
-				self.screen.blit(title,(280,0))
+				self.screen.blit(background,(0,0))
+				self.screen.blit(title,(225,-175))
 		
 				for event in pygame.event.get():
 					if event.type == pygame.QUIT:
@@ -138,6 +141,9 @@ class Game:
 								loading = False
 								file_name = self.load_game_save(number)
 								self.level= Level(file_name)
+							elif event.key == pygame.K_ESCAPE:
+								loading = False
+								lobby = True
 							elif event.key == pygame.K_BACKSPACE:
 								# Remove the last character
 								number = number[:-1]
@@ -148,6 +154,7 @@ class Game:
 				# Render the screen
 				self.screen.fill((0, 0, 0))
 				self.screen.blit(background,(0,0))
+				self.screen.blit(title,(225,-175))
 				self.screen.blit(text2,text1_rect)
 				pygame.draw.rect(self.screen, WHITE, input_rect, 2)
 				input_text = font1.render(number, True, WHITE)
@@ -187,7 +194,7 @@ class Game:
 						sys.exit()
 					elif not confirm:
 						keys = pygame.key.get_pressed()
-						image = pygame.image.load(f'./graphics/skin/{skin_index}/down_idle/down_0.png')
+						image = pygame.image.load(f'./image/skin/{skin_index}/down_idle/down_0.png')
 						self.screen.blit(background,(0,0))
 						self.screen.blit(image,(WIDTH//2+200,HEIGHT//2-30))
 						if not can_switch_skin:
@@ -224,10 +231,10 @@ class Game:
 				pygame.display.update()			
 				self.clock.tick(FPS)
 			# image loading
-			resume_img  = pygame.image.load('./graphics/resume.png').convert_alpha()
-			quit_img	= pygame.image.load('./graphics/quit.png').convert_alpha()
-			audio_img   = pygame.image.load('./graphics/audio.png').convert_alpha()
-			audio_gray  = pygame.image.load('./graphics/audio_gray.png').convert_alpha()
+			resume_img  = pygame.image.load('./image/resume.png').convert_alpha()
+			quit_img	= pygame.image.load('./image/quit.png').convert_alpha()
+			audio_img   = pygame.image.load('./image/audio.png').convert_alpha()
+			audio_gray  = pygame.image.load('./image/audio_gray.png').convert_alpha()
 			
 			# image transform
 			resume_img   = pygame.transform.scale(resume_img,(400,125))
@@ -248,7 +255,7 @@ class Game:
 			main_sound = pygame.mixer.Sound('./audio/main.ogg')
 			main_sound.set_volume(0.5)
 			main_sound.play(loops = -1)
-			image = pygame.image.load('./graphics/GG.png')
+			image = pygame.image.load('./image/GG.png')
 			image = pygame.transform.scale(image,(800,800))	
 				
 			while run:

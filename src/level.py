@@ -61,16 +61,15 @@ class Level:
 
 	def create_map(self):
 		layouts = {
-			'boundary': import_csv_layout('./scene/2023/01_Block.csv'), 
-			'01': 		import_csv_layout('./scene/2023/2023_object.csv'), 
-			'02': 		import_csv_layout('./scene/2023/2023_object2.csv'), 
-			'entity': 	import_csv_layout('./scene/2023/2023_Enemy.csv'), 
-			#'player': 	import_csv_layout('./scene/01_Player.csv')
-			}
+			'boundary': import_csv_layout('./cool/01_Block.csv'), 
+			'01': 		import_csv_layout('./cool/01_配件.csv'), 
+			'02': 		import_csv_layout('./cool/01_物件.csv'), 
+			'entity': 	import_csv_layout('./cool/01_enemy.csv'), 
+			'player': 	import_csv_layout('./cool/01_Player.csv')}
 		
 		graphics = {
-			'01':import_folder('./graphics/pic'), 
-			'ob':import_folder('./graphics/pic')}
+			'01':import_folder('./image/pic'), 
+			'ob':import_folder('./image/pic')}
 			
 		for style, layout in layouts.items():
 			for row_index, row in enumerate(layout):
@@ -167,7 +166,7 @@ class YSortCameraGroup(pygame.sprite.Group):
 		self.offset = pygame.math.Vector2()
 		
 		#creating the floor
-		floor_surf = pygame.image.load('./scene/03.png').convert()
+		floor_surf = pygame.image.load('./cool/03.png').convert()
 		self.floor_surf = pygame.transform.scale(floor_surf, (1280*4, 800*4))
 		self.floor_rect = self.floor_surf.get_rect(topleft = (0, 0))
 		
