@@ -4,14 +4,14 @@
 - MEMBER 2: [tzshin](https://github.com/kayeedelau/group5_project/blob/main/tz_name.txt)
 
 ## 遊戲簡介
-- **遊戲名稱：** (待定)
-- **開發引擎：** Unity
-- **美術開發：** 手繪、Blender、Canva
-- **遊戲類型：** 2.5D RPG遊戲
+- **遊戲名稱：** Dream Adventure 2.0
+- **開發環境：** Pygame
+- **美術開發：** 手繪、Canva
+- **遊戲類型：** 2D RPG遊戲
 
 ## 開發要素
 - **地圖、物件：**
-  首先要將2.5D的廠景、美術和tiles做好。然後將所有會用到的物件放上地圖和scene裡。
+  首先要將2D的場景、美術和tiles做好。然後將所有會用到的物件放上地圖和scene裡。
 - **控制(移動、戰鬥、物件互動)：**
   將Player的控制、戰鬥，當然也包含和敵人、物件的互動處理好。
 - **UI(對話框、背包、遊戲懸浮)：**
